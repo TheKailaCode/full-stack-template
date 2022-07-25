@@ -1,4 +1,4 @@
-const express = reqire('express')
+const express = require('express')
 const app = express()
 const cors = require('cors')
 const MongoClient = require('mongodb').MongoClient
@@ -10,8 +10,13 @@ let db,
     collection
 
 MongoClient.connect(dbConnectionString)
-    .then()(client => {
+    .then(client => {
         console.log('Connected to Database')
         db = client.db(dbName)
         collecton = db.collection('movies')
     })
+
+//PORT = 8000 
+app.listen(process.env.PORT || PORT, () => {
+    console.log(`Server is running on port ${process.env.PORT}! Go and catch it!`)
+})
